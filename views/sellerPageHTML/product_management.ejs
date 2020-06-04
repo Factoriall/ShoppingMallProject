@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/shop-homepage.css" rel="stylesheet">
+  <style>
+    .navbar-brand img {
+      border: 5px solid gray;
+      width: 100px;
+    }
+
+    .bulletin {
+      margin-top: 50px;
+      margin-left: 30px;
+    }
+  </style>
+  <script type="text/javascript">
+    function noauc_registerOpen() {
+      var popUrl = "../../seller/register_product_noauc"; //팝업창에 출력될 페이지 URL
+      var popOption = "width=400px, height=600px, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+      window.open(popUrl, "", popOption);
+    }
+    function noauc_updateOpen() {
+      var popUrl = "../../seller/register_product_auc"; //팝업창에 출력될 페이지 URL
+      var popOption = "width=400px, height=600px, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+      
+      window.open(popUrl, "", popOption);
+    }
+    function auc_registerOpen() {
+      var popUrl = "../../seller/register_product_auc"; //팝업창에 출력될 페이지 URL
+      var popOption = "width=400px, height=600px, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+      window.open(popUrl, "", popOption);
+    }
+    function auc_updateOpen() {
+      var popUrl = "../../seller/register_product_noauc"; //팝업창에 출력될 페이지 URL
+      var popOption = "width=400px, height=600px, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+      window.open(popUrl, "", popOption);
+    }
+
+  </script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <div class="navbar-brand"> <img src="/img/logofile.png" alt=""> </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="seller_page.html">My Page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../loginPageHTML/start.html">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="bulletin">
+    <h4>판매 물품(일반 거래)</h4>
+    <table class="table">
+      <thead>
+        <th>상품 이미지</td>
+        <th>상품명</th>
+        <th>가격</th>
+        <th>교환장소</th>
+        <th>위시리스트 등록 수</th>
+        <th>상태</th>
+        <th>수정/삭제</th>
+      </thead>
+      <tbody>
+
+        <% for(var i = 0; i < length; i++){ %>
+          <% if(flag[i] == 0) {%>
+            <form action="/seller/update_product_noauc" method="POST">
+          <tr name = "table1">
+            <td><img src="<%=img_src[i]%>" width="150px"></td>
+            <td><%=item_name[i]%></td>
+            <td><%=price[i]%>원</td>
+            <td><%=place[i]%></td>
+            <td><%=cart_info[i]%>명</td>
+            <td>판매 완료/진행 중</td>
+            <td>
+                <button type="submit" class="btn btn-primary" name="check" value="<%=item_id[i]%>">수정</button>
+                <!---<button type="button" class="btn btn-primary" name="button" onclick="javascript:noauc_updateOpen();">수정</button>--->
+                <input type="checkbox" class="btn btn-primary" name="check" value="<%=item_id[i]%>">삭제</button>
+            </td>
+          </tr>
+        </form>
+          <%} %>
+        <%}%>
+      </tbody>
+    </table>
+    <center>
+      <button type="button" class="btn btn-primary" onclick="javascript:noauc_registerOpen();">등록</button>
+      <button type="button" class="btn btn-primary" onclick="javascript:noauc_registerOpen();">수정</button>
+      <button type="button" class="btn btn-primary" onclick="javascript:noauc_registerOpen();">삭제</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='seller_page.html'">돌아가기</button>
+    </center>
+  </div>
+  <hr>
+  <div class="bulletin">
+    <h4>판매 물품(입찰 거래)</h4>
+    <table class="table">
+      <thead>
+        <th>상품 이미지</th>
+        <th>상품명</th>
+        <th>가격</th>
+        <th>교환장소</th>
+        <th>위시리스트 등록 수</th>
+        <th>기간</th>
+        <th>상태</th>
+        <th>히스토리</th>
+        <th>수정/삭제</th>
+      </thead>
+      <tbody>
+          <% for(var i = 0; i < length; i++){ %>
+            <% if(flag[i] == 1) {%>
+              <form action="">
+            <tr>
+              <td><img src="<%=img_src[i]%>" width="150px"></td>
+              <td><%=item_name[i]%></td>
+              <td><%=price[i]%>원</td>
+              <td><%=place[i]%></td>
+              <td><%=cart_info[i]%>명</td>
+              <td><%=date[i]%>까지</td>
+              <td>판매 완료/진행 중</td>
+              <td>
+                C: 10000<br>
+                D: 20140<br>
+                F: 50000
+              </td>
+              <td>
+                <button type="submit" class="btn btn-primary" name="button" value="<%=item_id[i]%>">수정</button>
+                <input type="checkbox" class="btn btn-primary" name="check" value="<%=item_id[i]%>">삭제</button>
+              </td>
+            </tr>
+          </form>
+            <%}%>
+          <%}%>
+      </tbody>
+    </table>
+    <center>
+      <button type="button" class="btn btn-primary" onclick="javascript:auc_registerOpen();">등록</button>
+      <button type="button" class="btn btn-primary" onclick="javascript:noauc_registerOpen();">수정</button>
+      <button type="button" class="btn btn-primary" onclick="javascript:noauc_registerOpen();">삭제</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='seller_page.html'">돌아가기</button>
+   </center>
+  </div>
+</body>
+
+</html>

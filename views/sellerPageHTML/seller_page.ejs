@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>대학생 플리마켓</title>
+
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/shop-homepage.css" rel="stylesheet">
+  <style>
+    .bulletin {
+      margin-top: 30px;
+      width: 100%;
+    }
+    .search {
+      border: 1px solid gray;
+      height: 40px;
+      width: 400px;
+      padding: 5px;
+      margin: 10px;
+      background-color: #ffffff;
+    }
+    .input_text {
+      font-size: 16px;
+      width: 325px;
+      padding-left: 10px;
+      border: 0px;
+      outline: none;
+      float: left;
+    }
+    .sch_smit {
+      width: 50px;
+      height: 100%;
+      border: 0px;
+      background: gray;
+      outline: none;
+      float: right;
+      color: #ffffff;
+    }
+    .btn1 {
+      color: white;
+      background-color: gray;
+    }
+    .btn2{
+      color: black;
+      text-align: center;
+    }
+    .btn2:hover{
+      text-decoration: none;
+      color: black;
+    }
+    .my_info {
+      margin: 10px;
+    }
+    .col-lg-9 {
+      margin-top: 30px;
+    }
+    .navbar-brand img {
+      border: 5px solid gray;
+      width: 100px;
+    }
+    .row{
+      margin: 30px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $(".btn2").mouseover(function() {
+        $(".btn2").css("background-color", "lightgray");
+      });
+      $(".btn2").mouseout(function() {
+        $(".btn2").css("background-color", "white");
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <div class="navbar-brand"> <img src="/img/logofile.png" alt=""> </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">My Page
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../loginPageHTML/start.html">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <h1 class="my-4">판매자 창</h1>
+        <div class="list-group">
+          <button class="list-group-item btn1">개인 정보</button>
+          <form action="/seller/product_management" method="POST">
+            <button type="subimt" class="list-group-item btn2">상품 관리</button>
+          </form>
+          
+        </div>
+      </div>
+      <!-- /.col-lg-3 -->
+      <div class="col-lg-9" width=100%>
+        <h4>개인 정보</h4>
+        <table class="table my_info">
+          <tr>
+            <td>이름</td>
+            <td><%=s_name%></td>
+          </tr>
+          <tr>
+            <td>Student ID</td>
+            <td><%=id%></td>
+          </tr>
+          <tr>
+            <td>전화번호</td>
+            <td><%=pnum%></td>
+          </tr>
+        </table>
+        <div class="bulletin">
+          <h4>판매 물품(일반거래)</h4>
+          <table class="table">
+            <thead>
+              <th>상품명</th>
+              <th>가격</th>
+              <th>거래장소</th>
+              <th>위시리스트 등록 수</th>
+              <th>거래상태</th>
+            </thead>
+            <tbody>
+          
+              <% for(var i = 0; i < length; i++){ %>
+                <% if(flag[i] == 0) {%>
+              <tr>
+                <td><%=item_name[i]%></td>
+                <td><%=price[i]%></td>
+                <td><%=place[i]%></td>
+                <td><%=cart_info[i]%></td>
+                <td>판매 완료/진행 중</td>
+            </tr>
+             <%} %>
+          <%}%>
+            </tbody>
+          </table>
+        </div>
+        <div class="bulletin">
+          <h4>판매 물품(옥션)</h4>
+          <table class="table">
+            <thead>
+              <th>상품명</th>
+              <th>가격</th>
+              <th>거래장소</th>
+              <th>위시리스트 등록 수</th>
+              <th>기간</th>
+              <th>거래상태</th>
+              <th>입찰내역</th>
+            </thead>
+            <tbody>
+              <% for(var i = 0; i < length; i++){ %>
+                <% if(flag[i] == 1) {%>
+                <tr>
+                  <td><%=item_name[i]%></td>
+                  <td><%=price[i]%>원</td>
+                  <td><%=place[i]%></td>
+                  <td><%=cart_info[i]%>명</td>
+                  <td><%=date[i]%>까지</td>
+                  <td>판매 완료/진행 중</td>
+                  <td>히스토리 넣을 곳</td>
+                </tr>
+              <%}%>
+           <%}%>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <!-- /.col-lg-9 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

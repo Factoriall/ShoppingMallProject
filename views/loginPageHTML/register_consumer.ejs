@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/shop-homepage.css" rel="stylesheet">
+  <style media="screen">
+    h1 {
+      text-align: center;
+    }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script>
+    $(function() {
+      $('#chkid').click(function() {
+        var id = $("#id").val();
+        $.ajax({
+          url: '/login/register_consumer/idcheck',
+          type: 'POST',
+          data: {
+            data: id
+          },
+          dataType: 'json',
+          success: function(result) {
+            if (result['data'] == '공백') {
+              alert("아이디를 입력해주세요");
+            } else if (result['data'] == '존재') {
+              alert("중복된 아이디 입니다.");
+              $('#id').focus();
+            } else {
+              alert("사용 가능한 아이디입니다");
+            }
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <%
+    if(pass == 1)
+    { %>
+  <script type="text/javascript">
+    <!-- 비밀번호 불일치 -->
+    alert('비밀번호가 일치하지 않습니다.');
+  </script> <% }else if(pass == 2){%>
+  <script type="text/javascript">
+    <!-- 회원가입 완료시 -->
+    alert('회원가입이 완료되었습니다. ');
+    self.close();
+  </script>
+  <% }else if(pass == 3){%>
+  <script type="text/javascript">
+    <!-- 중복된 아이디 존재할 시-->
+    alert('이미 존재하는 아이디입니다.');
+  </script>
+  <%}%>
+  <h1>구매자 회원가입</h1>
+  <hr>
+  <form action="/login/register_consumer/register" method="post">
+  <div id="box">
+    <div class="form-group" id="divId">
+      <label for="inputStudentID" class="col-lg-2 control-label">Student ID</label>
+      <div class="col-lg-10 input-group">
+        <input type="number" name="id" class="form-control" id="id" data-rule-required="true" placeholder="학생 번호" maxlength="30">
+        <button type="button" class="btn btn-secondary" name="button" id="chkid" style="margin-left: 10px;">중복 확인</button>
+      </div>
+    </div>
+    <div class="form-group" id="divPassword">
+      <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="password" name="password" data-rule-required="true" placeholder="패스워드" maxlength="30">
+      </div>
+    </div>
+    <div class="form-group" id="divPasswordCheck">
+      <label for="inputPasswordCheck" class="col-lg-2 control-label">패스워드 확인</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" name="passwordCheck"  id="passwordCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
+      </div>
+    </div>
+    <div class="form-group" id="divName">
+      <label for="inputName" class="col-lg-2 control-label">이름</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" name="name" placeholder="이름" maxlength="15">
+      </div>
+    </div>
+  </div>
+  <center>
+    <button type="submit" name="button" class="btn btn-primary btn-lg">회원 가입</button>
+    <button type="button" name="button" class="btn btn-primary btn-lg" onclick="self.close();">취소</button>
+  </center>
+  </form>
+
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

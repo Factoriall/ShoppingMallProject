@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>대공구</title>
+
+
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/shop-homepage.css" rel="stylesheet">
+
+  <style>
+    .bulletin {
+      width: 100%;
+    }
+
+
+    input {
+      vertical-align: middle;
+    }
+
+    input.form-text {
+      border: 1px solid #bcbcbc;
+      height: 28px;
+    }
+
+    input.img-button {
+      background: url("images/button_search.png") no-repeat;
+      border: none;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    .btn1 {
+      color: white;
+      background-color: gray;
+    }
+    .btn2{
+      color: black;
+      text-align: center;
+    }
+    .btn2:hover{
+      text-decoration: none;
+      color: black;
+    }
+
+    .row {
+      margin-top: 30px;
+    }
+
+    .navbar-brand img {
+      border: 5px solid gray;
+      width: 100px;
+    }
+
+    .navbar-search {
+      margin-top: 30px;
+    }
+
+    .nav-item .nav-link {
+      background-color: transparent;
+      border: 0px transparent solid;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $(".btn2").mouseover(function() {
+        $(".btn2").css("background-color", "lightgray");
+      });
+      $(".btn2").mouseout(function() {
+        $(".btn2").css("background-color", "white");
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!-- 위의 메뉴판 부분 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <div class="navbar-brand"> 대학교 플리마켓 </div>
+      <!-- 학교 이름 삽입 -->
+      <div class="univ_name" style="color: white"> 성균관대학교 </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <!-- 이미 home page라서 변경사항 x -->
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <!-- 마이 페이지 -->
+            <form action="consumer_page.html" method="post">
+              <input class="nav-link" type="submit" value="My Page">
+            </form>
+          </li>
+          <li class="nav-item">
+            <!-- 로그 아웃 -->
+            <form action="start.html" method="post">
+              <input class="nav-link" type="submit" value="Log out">
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="list-group" style="margin-top: 30px;">
+          <a href="mainPage.html" class="list-group-item btn2">벼룩 시장</a>
+          <button class="list-group-item btn1">경매</button>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <!-- 상품 검색 -->
+        <div class="navbar-search">
+          <h4>검색</h4>
+          <center>
+            <div class="input-group md-form form-sm form-2 pl-0" >
+              <input class="form-control" type="text" placeholder="상품 이름" style="margin: 5px;">
+              <input class="form-control" type="number" placeholder="최소 가격" style="margin: 5px;"> ~ <input class="form-control" type="number" placeholder="최대 가격" style="margin: 5px;">
+              <button type="button" class="btn btn-primary" style="margin: 5px;">검색</button>
+            </div>
+          </center>
+        </div>
+        <hr>
+
+        <!-- 상품 목록 -->
+        <h4>상품 목록</h4>
+        <div class="bulletin">
+          <table class="table">
+            <thead>
+              <th>상품명</th>
+              <th>현재 가격</th>
+              <th>기간</th>
+              <th>교환 장소</th>
+              <th>판매자 이름</th>
+              <th>판매자 번호</th>
+              <th>상태</th>
+            </thead>
+            <tbody>
+              <td><a href="auc_product.html">치킨</a></td>
+              <td>10000</td>
+              <td>-2019.12.08 14:00</td>
+              <td>지관</td>
+              <td>홍길동</td>
+              <td>01012345678</td>
+              <td>입찰중</td>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col">
+              <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-9 -->
+  </div>
+  <!-- /.row -->
+  </div>
+  <!-- /.container -->
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
